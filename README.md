@@ -2,97 +2,133 @@
 
 A cheatsheet of Git commands.
 
-- [cd, ls](#navigate)
-- [git init, git config](#git-setup)
-- [editor](#git-editor)
-- [git remote](#remote-branch)
-- [git add, git commit](#add-and-commit)
-- [delete local and remote branch](#delete-local-and-remote-branch)
+- [terminal](#terminal)
+- [setup](#setup)
+- [state](#state)
+- [branch](#branch)
+- [remote](#remote)
+- [commit](#commit)
+- [stash](#stash)
+- [sync](#sync)
+- [rewrite history](#rewrite-history)
 
-## navigate
-
-* navigate to a particular folder
+## terminal
 ```bash
+# navigate to a particular folder
 cd "<path>"
-```
-* navigate up a folder
-```bash
+# navigate up a folder
 cd ..
-```
-* navigate to your home folder
-```bash
+# navigate to your home folder
 cd
-```
-* list items in current folder
-```bash
+# list items in current folder
 ls
 ```
-* check git status
-```bash
-git status
-```
-* check git log
-```bash
-git log                # too verbose
-git log --oneline      # condenses to a single line
-git log --oneline -n 5 # prints only the last 5 commits
-```
 
-## git setup
-
-* initialize a git repository
+## setup
 ```bash
-cd "<desired-path>"
-git init
-```
-* check global and local git settings
-```bash
+# check global and local git settings
 git config --global -l
 git config --local -l
-```
-* configure global git settings (cd anywhere)
-```bash
+# configure global git settings
 git config --global user.name "<full-name>"
 git config --global user.email "<email>"
 git config --global core.editor "nano -w"
-```
-* configure local git settings
-```bash
+# configure local git settings
 cd "<desired-path-for-local-settings>"
 git config --local user.name "<local-full-name>"
 git config --local user.email "<local-email>"
+# initialize a local git repository
+cd "<desired-path>"
+git init
+# clone a remote repository
+git clone <https-origin-url>
 ```
 
-### git editor
-* check editor version and run
+## state
 ```bash
-nano --version
-nano # exit nano with Ctrl-X
-vim --version
-vim
-emacs --version
-emacs
+# check git status
+git status
+# check git log
+git log                # verbose
+git log --oneline      # condense each commit to a single line
+git log --oneline -n 5 # print only the last 5 commits
 ```
 
-### remote branch
+## branch
 ```bash
-git remote -v
-# the remote branch is named origin in this example
-git remote add origin <https-origin-url>
-git remote set-url origin <https-origin-url>
-```
-
-### add and commit
-```bash
-# add
-git add <file.ext>
-git add . # danger, this stages all changes
-# commit
-git commit -m "Message"
-```
-
-### delete local and remote branch
-```bash
+# list all local branches
+git branch
+# create a local branch
+git branch <local-branch-name>
+# switch between branches and update working directory
+git checkout <branch-name>
+# delete local branch only if its commits are merged upstream
 git branch -d <local-branch-name>
+# delete local branch unconditionally
+git branch -D <local-branch-name>
+# delete remote branch
 git push origin :<remote-branch-name>
+```
+
+## remote
+```bash
+# view remote settings
+git remote -v
+# configure 'origin' remote branch
+git remote add origin <https-origin-url>
+# change 'origin' remote branch URL
+git remote set-url origin <https-origin-url>
+# configure 'upstream' remote branch (when working with a fork)
+git remote add upstream <https-origin-url>
+# change 'upstream' remote branch URL
+git remote set-url upstream <https-origin-url>
+```
+
+## commit
+```bash
+# stage one file
+git add <file.ext>
+# stage all files (danger, this stages all changes)
+git add .
+# unstage one file
+git reset HEAD <file.ext>
+# commit with message
+git commit -m "Message"
+# amend a local commit
+git commit --amend # this will open up the git editor
+# push local commits to origin
+git push origin <remote-branch-name>
+```
+
+## stash
+```bash
+# list all stashed files
+git stash list
+# stash all modified files without committing
+git stash
+# restore the most recent stashed files
+git stash pop
+# drop the most recent stashed files
+git stash drop
+```
+
+## sync
+```bash
+# sync a local fork with changes made in upstream/master
+git fetch upstream
+git checkout master
+git merge upstream/master
+git push origin master
+# sync a local branch with changes made in origin/master
+git fetch origin
+git checkout <branch-name>
+git merge origin/master
+```
+
+## rewrite history
+```bash
+# reset local and remote branches to a previous commit
+git checkout <local-branch-name>
+git reset --hard <sha-of-last-commit-to-keep>
+git push -f origin <remote-branch-name>
 ```
