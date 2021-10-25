@@ -68,6 +68,8 @@ git branch -d <local-branch-name>
 git branch -D <local-branch-name>
 # delete remote branch
 git push origin :<remote-branch-name>
+# checkout a pull request
+git fetch origin pull/<pr-number>/head:<branch-name>
 ```
 
 ## remote
@@ -131,4 +133,12 @@ git merge origin/master
 git checkout <local-branch-name>
 git reset --hard <sha-of-last-commit-to-keep>
 git push -f origin <remote-branch-name>
+```
+
+## vanquish ghosts
+```bash
+# prune remote branches
+git fetch --prune origin
+# prune upstream branches
+git fetch --prune upstream
 ```
