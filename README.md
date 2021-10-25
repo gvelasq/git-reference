@@ -69,7 +69,7 @@ git branch -D <local-branch-name>
 # delete remote branch
 git push origin :<remote-branch-name>
 # checkout a pull request
-git fetch origin pull/{PR number}/head:{branch name}
+git fetch origin pull/<pr-number>/head:<branch-name>
 ```
 
 ## remote
