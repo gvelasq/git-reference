@@ -11,6 +11,7 @@ A cheatsheet of Git commands.
 - [stash](#stash)
 - [sync](#sync)
 - [rewrite history](#rewrite-history)
+- [vanquish ghosts](#vanquish-ghosts)
 
 ## terminal
 ```bash
