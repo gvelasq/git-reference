@@ -1,6 +1,6 @@
-# git-cheatsheet
+# git-reference
 
-A cheatsheet of Git commands.
+> Git command reference
 
 - [terminal](#terminal)
 - [setup](#setup)
