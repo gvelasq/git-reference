@@ -117,15 +117,15 @@ git stash drop
 
 ## sync
 ```bash
-# sync a local fork with changes made in upstream/master
+# sync a local fork with changes made in upstream/main
 git fetch upstream
-git checkout master
-git merge upstream/master
-git push origin master
-# sync a local branch with changes made in origin/master
+git checkout main
+git merge upstream/main
+git push origin main
+# sync a local branch with changes made in origin/main
 git fetch origin
 git checkout <branch-name>
-git merge origin/master
+git merge origin/main
 ```
 
 ## rewrite history
