@@ -71,6 +71,8 @@ git branch -D <local-branch-name>
 git push origin :<remote-branch-name>
 # checkout a pull request
 git fetch origin pull/<pr-number>/head:<branch-name>
+# list branches and their creators
+git for-each-ref --sort=authorname --format "%(authorname) %(refname)"
 ```
 
 ## remote
